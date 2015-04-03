@@ -1,10 +1,10 @@
 require_relative 'report_model.rb'
-require_relative 'view'
+# requ ire_relative 'view'
 
 class Controller
   def initialize
     @data = Report.new
-    @view = View.new
+    # @view = View.new
   end
 
   def run
@@ -24,8 +24,9 @@ class Controller
     command = user_input
     case command
     when "yes" then run
-    when "no" then break
+    when "no" then puts "Goodbye!"
     else quit_yes_or_no
+    end
   end
 
   def user_input
