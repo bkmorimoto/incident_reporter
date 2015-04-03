@@ -21,9 +21,9 @@ class Controller
     puts "Welcome to your personal NYC complaint finder. Want to find all complaints near you?"
     puts "Enter your zip code"
     zip_code = user_input
-    #@data.jeopardy
+    @data.jeopardy
     @data.report_by_zip_code(zip_code)
-    #@data.kill_jeopardy
+    @data.kill_jeopardy
   end
 
   def quit_yes_or_no

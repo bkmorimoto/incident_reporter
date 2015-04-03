@@ -18,11 +18,11 @@ class Report
     end
   end
 
- #  def jeopardy
- #  	@pid = fork{ exec 'afplay Jeopardy-theme-song.mp3'}
-	# end
+  def jeopardy
+  	@pid = fork{ exec 'afplay Jeopardy-theme-song.mp3'}
+	end
 
-	# def kill_jeopardy
-	# 	Process.kill "TERM", @pid
-	# end
+	def kill_jeopardy
+		Process.kill "TERM", @pid
+	end
 end
