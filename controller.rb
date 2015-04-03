@@ -37,6 +37,7 @@ class Controller
     @data.jeopardy
     @data.report_by_zip_code(zip_code)
     @data.kill_jeopardy
+    # @data.report_any("descriptor","Graffiti",:incident_zip)
   end
 
   def quit_yes_or_no
