@@ -32,7 +32,9 @@ class Controller
       puts "Did not recognize your input"
       get_zip_return_complaints
     end
+    @data.jeopardy
     @data.report_by_zip_code(zip_code)
+    @data.kill_jeopardy
   end
 
   def quit_yes_or_no

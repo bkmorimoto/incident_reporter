@@ -17,4 +17,12 @@ class Report
       puts "#{k}: #{v}"
     end
   end
+
+  def jeopardy
+  	@pid = fork{ exec 'afplay Jeopardy-theme-song.mp3'}
+	end
+
+	def kill_jeopardy
+		Process.kill "TERM", @pid
+	end
 end
