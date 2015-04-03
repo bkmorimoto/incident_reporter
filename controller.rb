@@ -23,7 +23,9 @@ class Controller
     case answer
     when "IP"
       ip_address = open('http://whatismyip.akamai.com').read
-      zip_code = Geocoder.search(ip_address)[0].data["zip_code"].to_i
+      lat = Geocoder.search(ip_address)[0].data["latitude"]
+      long = Geocoder.search(ip_address)[0].data["longitude"]
+      zip_code = Geocoder.search("#{lat},#{long}")[0].data["address_components"][8]["long_name"].to_i
       puts "Searching complaints for zip code: #{zip_code}"
     when "ZIP"
       puts "Enter your zip"
