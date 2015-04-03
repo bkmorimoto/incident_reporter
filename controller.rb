@@ -1,4 +1,7 @@
 require_relative 'report_model.rb'
+require 'geocoder'
+require 'socket'
+
 # requ ire_relative 'view'
 
 class Controller
@@ -8,6 +11,8 @@ class Controller
   end
 
   def run
+    ip_address = open('http://whatismyip.akamai.com').read
+    zip_code = Geocoder.search(ip_address)[0].data["zip_code"].to_i
     get_zip_return_complaints
     quit_yes_or_no
   end
