@@ -2,17 +2,29 @@ require_relative 'report_model.rb'
 require 'geocoder'
 require 'socket'
 
-# requ ire_relative 'view'
-
 class Controller
+  attr_reader :data
+
   def initialize
-    @data = Report.new
-    # @view = View.new
+    @data = Report.new("https://data.cityofnewyork.us/resource/erm2-nwe9.json")
   end
 
   def run
-    get_zip_return_complaints
+    pick_report_field
+    # get_zip_return_complaints
     quit_yes_or_no
+  end
+
+  def pick_report_field
+    puts "Here are the fields to choose from:"
+    data.field_map.keys.map {|field| print "#{field}  "}
+    print "\nWhich field would you like to report on? "
+    field = gets.chomp.capitalize
+    print "\nFilter where #{field} = "
+    value = gets.chomp
+    print "\nAnd group by which field? "
+    group_by = gets.chomp.capitalize
+    data.report_any(data.field_map[field], value, data.field_map[group_by])
   end
 
   def get_zip_return_complaints
@@ -34,10 +46,10 @@ class Controller
       puts "Did not recognize your input"
       get_zip_return_complaints
     end
-    @data.jeopardy
-    @data.report_by_zip_code(zip_code)
-    @data.kill_jeopardy
-    # @data.report_any("descriptor","Graffiti",:incident_zip)
+    # @data.jeopardy
+    # @data.report_by_zip_code(zip_code)
+    # @data.kill_jeopardy
+    @data.report_any(:descriptor,"Graffiti",:incident_zip)
   end
 
   def quit_yes_or_no
